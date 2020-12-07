@@ -1,4 +1,4 @@
-with open('exercise_7_all.txt','r') as file:
+with open('exercise_7_all.txt', 'r') as file:
     lines = file.readlines()
 
 lines = [x[:-2] for x in lines]

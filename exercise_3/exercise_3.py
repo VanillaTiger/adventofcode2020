@@ -1,4 +1,4 @@
-with open("exercise_3.txt",'r') as f:
+with open("exercise_3.txt", 'r') as f:
     input_list = f.readlines()
 
 input_list = [m.rstrip('\n') for m in input_list]

@@ -4,7 +4,7 @@
 2-9 c: ccccccccc
 """
 
-with open("exercise_2.txt",'r') as f:
+with open("exercise_2.txt", 'r') as f:
     input_list=f.readlines()
 
 input_list = [m[:-1] for m in input_list]

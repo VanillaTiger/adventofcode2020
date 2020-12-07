@@ -1,4 +1,4 @@
-with open("exercise_6_all.txt",'r') as f:
+with open("exercise_6_all.txt", 'r') as f:
     lines = f.readlines()
 
 print(lines)

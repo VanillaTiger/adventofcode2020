@@ -1,7 +1,7 @@
 #cid
 import re
 fields = ["byr","iyr","eyr","hgt","hcl","ecl","pid"]
-with open("exercise_4.txt",'r') as f:
+with open("exercise_4.txt", 'r') as f:
     lines = f.readlines()
     number=0
     valid=True
