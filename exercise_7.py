@@ -1,4 +1,4 @@
-with open('exercise_7.txt','r') as file:
+with open('exercise_7_all.txt','r') as file:
     lines = file.readlines()
 
 lines = [x[:-2] for x in lines]
@@ -16,7 +16,7 @@ def create_base():
         list_inside=[[(' ').join(m.split()[1:]),m.split()[0]] for m in inside]
         database[content[0][:-1]]=list_inside
 
-    database['no other bag']= ""
+    database['other bag']= ""
     print(database)
     # quit()
 
@@ -41,11 +41,14 @@ def part1(suma):
 
     print(suma)
 
+def find_bags(bag,result=1):
+    for bags in database[bag]:
+        if bags[0] == "other bag":
+            return 1
+        result+=int(bags[1])*find_bags(bags[0])
+    return result
+
+
 create_base()
 part1(suma)
-
-all_bags = {}
-print(database["shiny gold bag"])
-print(database["dark olive bag"])
-print(database["faded blue bag"])
-print(database["no other bag"])
+print(find_bags("shiny gold bag")-1)
