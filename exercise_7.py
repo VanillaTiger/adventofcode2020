@@ -16,7 +16,7 @@ def create_base():
         list_inside=[[(' ').join(m.split()[1:]),m.split()[0]] for m in inside]
         database[content[0][:-1]]=list_inside
 
-    database['no other bag']= 1
+    database['no other bag']= ""
     print(database)
     # quit()
 
