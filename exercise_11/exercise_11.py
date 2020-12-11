@@ -58,19 +58,13 @@ def seat_process():
     seat_moved = False
     for x in range(0, rows):
         for y in range(0, columns):
-            if (x == 0 and y == 0) or \
-                    (x == rows - 1 and y == columns - 1) or \
-                    (x == 0 and y == columns - 1) or (x == rows - 1 and y == 0):
+            occupied = check_occupied_2(x, y)
+            if base_data[x][y] == '#' and occupied >= 5:
+                seat_moved = True
+                input_data[x][y] = "L"
+            if base_data[x][y] == "L" and occupied == 0:
                 input_data[x][y] = "#"
-
-            else:
-                occupied = check_occupied_2(x, y)
-                if base_data[x][y] == '#' and occupied >= 5:
-                    seat_moved = True
-                    input_data[x][y] = "L"
-                if base_data[x][y] == "L" and occupied == 0:
-                    input_data[x][y] = "#"
-                    seat_moved = True
+                seat_moved = True
     return seat_moved
 
 
