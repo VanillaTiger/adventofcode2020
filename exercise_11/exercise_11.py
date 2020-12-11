@@ -13,6 +13,34 @@ change_seat=True
 
 base_data = copy.deepcopy(input_data)
 
+def check_direction(x,y,m_dif,n_dif):
+    m=1*m_dif
+    n=1*n_dif
+    if rows > x + m >= 0 and columns > y + n >= 0:
+        while base_data[x+m][y+n]=='.':
+            m += m_dif
+            n += n_dif
+            if rows>x+m>=0 and columns>y+n>=0:
+                continue
+            else:
+                return '.'
+
+        return base_data[x+m][y+n]
+    else:
+        return "."
+
+def check_occupied_2(x,y):
+    occupied = 0
+    # if (x!=0 and y!=0) and (x!=rows-1 and y!=columns-1):
+    for m in range(-1, 2):
+        # print("m=",m)
+        for n in range(-1, 2):
+            # print("n=",n)
+            if (m!=0 and n!=0) or (m==0 and n!=0) or (m!=0 and n==0):
+                # if rows > x + m >= 0 and columns > y + n >= 0:
+                    if check_direction(x,y,m,n) == "#": occupied += 1
+    return occupied
+
 def check_occupied(x,y):
     occupied = 0
     # if (x!=0 and y!=0) and (x!=rows-1 and y!=columns-1):
@@ -21,13 +49,8 @@ def check_occupied(x,y):
         for n in range(-1, 2):
             # print("n=",n)
             if (m!=0 and n!=0) or (m==0 and n!=0) or (m!=0 and n==0):
-                # if (x==4 and y==5):
-                #     print('element=',base_data[x][y],x,y,n,m)
-                # print(x+m,y+n,base_data[x+m][y+n])
                 if rows>x+m>=0 and columns>y+n>=0:
                     if base_data[x + m][y + n] == "#": occupied += 1
-
-    # print("end point",occupied,"x=",x,"y=",y)
     return occupied
 
 def seat_process():
@@ -40,13 +63,8 @@ def seat_process():
                 input_data[x][y]="#"
 
             else:
-                occupied=0
-                for m in range(-1,1):
-                    for n in range(-1,1):
-                        if base_data[x+m][y+n]=="#": occupied+=1
-
-                occupied = check_occupied(x,y)
-                if base_data[x][y]=='#' and occupied>=4:
+                occupied = check_occupied_2(x,y)
+                if base_data[x][y]=='#' and occupied>=5:
                     change_seat=True
                     input_data[x][y] = "L"
                 if base_data[x][y]=="L" and occupied==0:
@@ -61,7 +79,7 @@ def save_tofile(name):
 
 while change_seat:
     change_seat=seat_process()
-# save_tofile('first')
+    save_tofile('next')
     base_data = copy.deepcopy(input_data)
 
 print(sum([m.count('#') for m in base_data]))
