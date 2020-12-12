@@ -3,22 +3,3 @@ N3
 F7
 R90
 F11
-
-25235
-
-    def rotate(direction, waypoint_pos):
-        new_waypoint_pos = {'E': 0, 'W': 0, 'N': 0, 'S': 0}
-        for k in waypoint_pos.keys():
-            if waypoint_pos[k]!=0:
-                index=possible_directions.index(k)
-                if direction=='R':
-                    index+=int(item[1:])//90
-                elif direction=='L':
-                    index-=int(item[1:])//90
-                index=index%4
-                direction=possible_directions[index]
-                new_waypoint_pos[direction]=waypoint_pos[k]
-        waypoint_pos=new_waypoint_pos
-        return waypoint_pos
-
-    waypoint_pos=rotate(item[0])
